@@ -1,4 +1,5 @@
 using ETicaretApi.Persistance;
+using ETicaretApi.Application;
 
 namespace ETicaretApi.API
 {
@@ -23,6 +24,8 @@ namespace ETicaretApi.API
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
             builder.Services.AddPersistence(builder.Configuration);
+            builder.Services.AddApplication();
+
 
             var app = builder.Build();
 
