@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -16,8 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\ETicaretApi.Application\ETicaretApi.Application.csproj" />
-    <ProjectReference Include="..\..\Core\ETicaretApi.Domain\ETicaretApi.Domain.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ETicaretApi.Persistance\ETicaretApi.Persistance.csproj" />
   </ItemGroup>
 
