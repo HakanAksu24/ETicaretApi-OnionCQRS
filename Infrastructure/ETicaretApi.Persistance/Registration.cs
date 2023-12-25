@@ -1,5 +1,6 @@
-﻿using ETicaretApi.Application.Interfaces;
+﻿using ETicaretApi.Application.Interfaces.Repositories;
 using ETicaretApi.Persistance.Context;
+using ETicaretApi.Persistance.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +18,8 @@ namespace ETicaretApi.Persistance
         {
             services.AddDbContext<AppDbContext>(option => option.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped(typeof(IReadRepository<>),typeof(IReadRepository<>));
+            services.AddScoped(typeof(IReadRepository<>),typeof(ReadRepository<>));
+            services.AddScoped(typeof(IWriteRepository<>),typeof(WriteRepository<>));
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using ETicaretApi.Application.Interfaces;
+﻿using ETicaretApi.Application.Interfaces.Repositories;
 using ETicaretApi.Domain.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
