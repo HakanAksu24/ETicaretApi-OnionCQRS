@@ -1,6 +1,8 @@
 ﻿using ETicaretApi.Application.Interfaces.Repositories;
+using ETicaretApi.Application.Interfaces.UnitOfWorks;
 using ETicaretApi.Persistance.Context;
 using ETicaretApi.Persistance.Repositories;
+using ETicaretApi.Persistance.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +22,8 @@ namespace ETicaretApi.Persistance
 
             services.AddScoped(typeof(IReadRepository<>),typeof(ReadRepository<>));
             services.AddScoped(typeof(IWriteRepository<>),typeof(WriteRepository<>));
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }
 }
