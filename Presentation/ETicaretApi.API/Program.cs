@@ -1,5 +1,6 @@
 using ETicaretApi.Persistance;
 using ETicaretApi.Application;
+using ETicaretApi.Mapper;
 
 namespace ETicaretApi.API
 {
@@ -25,6 +26,9 @@ namespace ETicaretApi.API
 
             builder.Services.AddPersistence(builder.Configuration);
             builder.Services.AddApplication();
+            builder.Services.AddCustomMapper();
+
+
 
 
             var app = builder.Build();
