@@ -25,6 +25,6 @@ namespace ETicaretApi.Domain.Entities
         public  int Priorty { get; init; }
 
         public ICollection<Detail> Details { get; set; }
-        public ICollection<Product> Products { get; set; }
+        public ICollection<ProductCategory> ProductCategories { get; set; }
     }
 }
