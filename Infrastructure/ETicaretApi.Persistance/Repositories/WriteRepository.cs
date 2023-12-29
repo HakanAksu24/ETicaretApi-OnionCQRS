@@ -38,10 +38,14 @@ namespace ETicaretApi.Persistance.Repositories
             return entity;
         }
 
+        public async Task DeleteRangeAsync(IList<T> entity)
+        {
+            await Task.Run(()=> Table.RemoveRange(entity));
+        }
         public async Task DeleteAsync(T entity)
         {
-            await Task.Run(()=> Table.Remove(entity));
+            await Task.Run(() => Table.Remove(entity));
         }
-       
+
     }
 }
