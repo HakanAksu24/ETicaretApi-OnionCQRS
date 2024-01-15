@@ -34,11 +34,10 @@ namespace ETicaretApi.Application.Features.Products.Command.UpdateProduct
                 .DeleteRangeAsync(productCategories);
 
             foreach(var categoryId in request.CategoryIds)
-            
                 await unitOfWork.GetWriteRepository<ProductCategory>()
                     .AddAsync(new() {  CategoryId = categoryId, ProductId =product.Id });
 
-            await unitOfWork.GetWriteRepository<Product>().UpdateAsync(product);
+            await unitOfWork.GetWriteRepository<Product>().UpdateAsync(map);
             await unitOfWork.SaveAsync();
             
 

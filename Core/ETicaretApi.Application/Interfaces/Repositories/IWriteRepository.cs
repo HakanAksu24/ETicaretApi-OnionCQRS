@@ -14,8 +14,6 @@ namespace ETicaretApi.Application.Interfaces.Repositories
         Task<T> UpdateAsync(T entity);
         Task DeleteAsync(T entity);
         Task DeleteRangeAsync(IList<T> entity);
-
-
     }
 }
 

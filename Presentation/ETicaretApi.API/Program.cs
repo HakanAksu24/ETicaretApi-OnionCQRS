@@ -1,6 +1,7 @@
 using ETicaretApi.Persistance;
 using ETicaretApi.Application;
 using ETicaretApi.Mapper;
+using ETicaretApi.Application.Exceptions;
 
 namespace ETicaretApi.API
 {
@@ -41,6 +42,8 @@ namespace ETicaretApi.API
 
             }
 
+
+            app.ConfigureExceptionHandlingMiddleware();
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
