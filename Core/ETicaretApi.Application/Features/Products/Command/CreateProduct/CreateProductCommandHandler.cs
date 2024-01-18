@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ETicaretApi.Application.Features.Products.Command.CreateProduct
 {
-    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest>
+    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest ,  Unit>
     {
         private readonly IUnitOfWork unitOfWork;
 
@@ -17,7 +17,7 @@ namespace ETicaretApi.Application.Features.Products.Command.CreateProduct
         {
             this.unitOfWork = unitOfWork;
         }
-        public async Task Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
             Product product = new(request.Title, request.Description, request.BrandId, request.Price, request.Discount);
 
@@ -37,6 +37,8 @@ namespace ETicaretApi.Application.Features.Products.Command.CreateProduct
                 //Yukarıdaki ilk SaveAsync() işlemini ProductCategory içerisinde productıd yi eşlemek için productı oluşturmamız gerekiyor.
                 await unitOfWork.SaveAsync();
             }
+
+            return Unit.Value;
 
         }
     }
