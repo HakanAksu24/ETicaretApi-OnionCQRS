@@ -1,4 +1,6 @@
-﻿using ETicaretApi.Application.Interfaces.UnitOfWorks;
+﻿using ETicaretApi.Application.Features.Products.Exceptions;
+using ETicaretApi.Application.Features.Products.Rules;
+using ETicaretApi.Application.Interfaces.UnitOfWorks;
 using ETicaretApi.Domain.Entities;
 using MediatR;
 using System;
@@ -12,13 +14,19 @@ namespace ETicaretApi.Application.Features.Products.Command.CreateProduct
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest ,  Unit>
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly ProductRules productRules;
 
-        public CreateProductCommandHandler(IUnitOfWork unitOfWork)
+        public CreateProductCommandHandler(IUnitOfWork unitOfWork, ProductRules productRules)
         {
             this.unitOfWork = unitOfWork;
+            this.productRules = productRules;
         }
         public async Task<Unit> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
+            IList<Product> products = await unitOfWork.GetReadRepository<Product>().GetAllAsync();
+
+            await productRules.ProductTitleMustNotBeSame(products, request.Title);
+
             Product product = new(request.Title, request.Description, request.BrandId, request.Price, request.Discount);
 
             await unitOfWork.GetWriteRepository<Product>().AddAsync(product);
